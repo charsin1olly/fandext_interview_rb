@@ -28,6 +28,7 @@ class CreateUserProcedure < ApplicationProcedure
   def verify_email_domain
     @error = DomainVerificationService.call(user.email).error
     if @error
+      # p "#{error}-------verify_email_domain"
       @error = "Domain invalid"
       raise InvalidUserAttributes
     end
@@ -43,7 +44,7 @@ class CreateUserProcedure < ApplicationProcedure
   end
 
   def send_welcome_mail
-    # mail to user
+    UserMailer.welcome_email(@user).deliver_now
   end
 
   def login_user
