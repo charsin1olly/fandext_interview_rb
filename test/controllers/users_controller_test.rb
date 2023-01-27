@@ -11,8 +11,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create user succeeded" do
+    user = User.new(email: "example@gmail.com", first_name:"Andy", last_name:"White", address:"Taipei")
+    assert user.save
   end
 
   test "create user failed" do
+    user = User.new
+    assert_not user.save
   end
 end

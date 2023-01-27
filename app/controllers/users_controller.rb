@@ -15,7 +15,6 @@ class UsersController < ApplicationController
       flash.now[:success] = register_user.succeeded_message
       redirect_to users_path
     else
-      # p "#{register_user.error}------create"
       flash.now[:warning] = register_user.error
       render :new
     end
